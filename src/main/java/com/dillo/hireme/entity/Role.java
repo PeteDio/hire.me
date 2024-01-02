@@ -19,6 +19,4 @@ public class Role {
 
     @Column(unique = true, nullable = false)
     private String name;
-    @ManyToMany(mappedBy = "role")
-    List<User> users = new ArrayList<>();
 }

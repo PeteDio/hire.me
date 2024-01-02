@@ -8,6 +8,7 @@ import com.dillo.hireme.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -26,17 +27,41 @@ public class UserServiceImpl implements UserService {
         user.setEmail(user.getEmail());
         user.setPassword(user.getPassword());
         userRepository.save(user);
-        Role role = roleRepository.findByName("ROLE_USER");
+        Role role = roleRepository.findByName("admin");
         if (role == null) {
             role = checkRoleExist();
         }
-        user.setRole(Arrays.asList(role));
+        user.setRole(role);
         userRepository.save(user);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public User getUserById(String id) {
+        return userRepository.findByEmail(id);
+    }
+
+    @Override
+    public void updateUser(String id, User updatedUser) {
+    User userToUpdate = getUserById(id);
+    userToUpdate.setFirstName(updatedUser.getFirstName());
+    userToUpdate.setLastName(updatedUser.getLastName());
+    userToUpdate.setPassword(updatedUser.getPassword());
+    userRepository.save(userToUpdate);
+    }
+
+    @Override
+    public void deleteUser(String id) {
+    userRepository.deleteByEmail(id);
     }
 
     private Role checkRoleExist(){
         Role role = new Role();
-        role.setName("ROLE_USER");
+        role.setName("admin");
         return roleRepository.save(role);
     }
 }
