@@ -1,6 +1,7 @@
 package com.dillo.hireme.service.impl;
 
 import com.dillo.hireme.entity.Candidate;
+import com.dillo.hireme.entity.CandidateStatus;
 import com.dillo.hireme.repository.CandidateRepository;
 import com.dillo.hireme.service.CandidateService;
 import org.springframework.stereotype.Service;
@@ -13,11 +14,8 @@ public class CandidateServiceImpl implements CandidateService {
 
     final CandidateRepository candidateRepository;
 
-    // TODO:Add repositories for related entities CandidateStatusRepository, InterviewRepository
-
     public CandidateServiceImpl(CandidateRepository candidateRepository) {
         this.candidateRepository = candidateRepository;
-        // Inject other repositories if applicable
     }
 
     // Implement all methods from the CandidateService interface
@@ -50,4 +48,10 @@ public class CandidateServiceImpl implements CandidateService {
     public void deleteCandidate(Long id) {
         candidateRepository.deleteById(id);
     }
+
+    public List<Candidate> findByCandidateStatus(String statusName) {
+        return candidateRepository.findByCandidateStatus(statusName);
+    }
+
+
 }

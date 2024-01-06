@@ -1,6 +1,7 @@
 package com.dillo.hireme.service;
 
 import com.dillo.hireme.entity.Candidate;
+import com.dillo.hireme.entity.CandidateStatus;
 import org.springframework.stereotype.Service;
 
 
@@ -19,6 +20,5 @@ public interface CandidateService {
 
     void deleteCandidate(Long id);
 
-    // TODO:Additional methods for related entities
-    
+
 }
