@@ -11,7 +11,6 @@ import java.util.List;
 public interface CandidateService {
 
     List<Candidate> getAllCandidates();
-
     Candidate getCandidateById(Long id);
 
     void saveCandidate(Candidate candidate);
@@ -19,6 +18,8 @@ public interface CandidateService {
     void updateCandidate(Long id, Candidate updatedCandidate);
 
     void deleteCandidate(Long id);
+
+    CandidateStatus updateCandidateStatus(Candidate candidate, String updatedStatus);
 
 
 }

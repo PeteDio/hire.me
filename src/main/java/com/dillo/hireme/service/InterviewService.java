@@ -1,20 +1,20 @@
 package com.dillo.hireme.service;
 
 import com.dillo.hireme.entity.Interview;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
-@Service
+
 public interface InterviewService {
 
     List<Interview> getAllInterviews();
 
     Interview getInterviewById(Long id);
 
-    void saveInterview(Interview interview);
+    Interview saveInterview(Interview interview);
 
-    void updateInterview(Long id, Interview updatedInterview);
+    Interview updateInterview(Long id, Interview updatedInterview);
 
     void deleteInterview(Long id);
 
@@ -25,4 +25,7 @@ public interface InterviewService {
     List<Interview> getInterviewsByEmployeeId(Long employeeId);
 
     List<Interview> getInterviewsWithoutNotes();
+
+
+    Interview changeStatus(Long id, String updatedStatus);
 }
