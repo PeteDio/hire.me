@@ -2,26 +2,31 @@ package com.dillo.hireme.controller;
 
 import com.dillo.hireme.entity.User;
 import com.dillo.hireme.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.ui.Model;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
-    private final UserService userService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
-        this.userService = userService;
     }
-
-    // Create a new user
-    @PostMapping("/register")
-    public String add(@RequestBody User user) {
-        userService.saveUser(user);
-        return "New User Added";
+    @GetMapping("/index")
+    public String home() {
+        return "index";
+    }
+    @GetMapping("/login")
+    public String landingPage() {
+        return "login";
     }
 
     // Retrieve all users
