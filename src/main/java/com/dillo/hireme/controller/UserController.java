@@ -20,15 +20,6 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
     }
-    @GetMapping("/index")
-    public String home() {
-        return "index";
-    }
-    @GetMapping("/login")
-    public String landingPage() {
-        return "login";
-    }
-
     // Retrieve all users
     @GetMapping("/getAll")
     public List<User> getAllUsers() {
@@ -37,19 +28,19 @@ public class UserController {
 
     // Retrieve a specific user by ID
     @GetMapping("/{id}")
-    public User getById(@PathVariable String id) {
+    public User getById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
     // Update an existing user
     @PutMapping("/{id}")
-    public void update(@PathVariable String id, @RequestBody User updatedUser) {
+    public void update(@PathVariable Long id, @RequestBody User updatedUser) {
         userService.updateUser(id, updatedUser);
     }
 
     // Delete a user
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id) {
+    public void delete(@PathVariable Long id) {
         userService.deleteUser(id);
     }
 }

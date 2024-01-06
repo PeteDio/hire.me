@@ -26,7 +26,7 @@ public class AuthController {
     @PostMapping("/register/save")
     // Create a new user
     public String register(@Valid @ModelAttribute("User") User user, BindingResult result, Model model) {
-        User existingUser = userService.getUserById(user.getEmail());
+        User existingUser = userService.getUserById(user.getId());
         if (existingUser != null) {
             result.rejectValue("email", null, "There is already an account registered with the same email");
         }
@@ -36,6 +36,14 @@ public class AuthController {
         }
         userService.saveUser(user); // Save the valid user
         return "register";
+    }
+    @GetMapping("/index")
+    public String home() {
+        return "index";
+    }
+    @GetMapping("/login")
+    public String landingPage() {
+        return "login";
     }
 
 }

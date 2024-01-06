@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
         user.setEmail(user.getEmail());
         user.setPassword(user.getPassword());
         userRepository.save(user);
-        Role role = roleRepository.findByName("admin");
+        Role role = roleRepository.findByName("coordinator");
         if (role == null) {
             role = checkRoleExist();
         }
@@ -41,12 +41,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(String id) {
-        return userRepository.findByEmail(id);
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void updateUser(String id, User updatedUser) {
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+
+    @Override
+    public void updateUser(Long id, User updatedUser) {
     User userToUpdate = getUserById(id);
     userToUpdate.setFirstName(updatedUser.getFirstName());
     userToUpdate.setLastName(updatedUser.getLastName());
@@ -55,8 +61,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(String id) {
-    userRepository.deleteByEmail(id);
+    public void deleteUser(Long id) {
+    userRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateUserRole(Long id, String roleName) {
+        User userToUpdateRole = getUserById(id);
+        Role updatedRole = roleRepository.findByName(roleName);
+        userToUpdateRole.setRole(updatedRole);
+        userRepository.save(userToUpdateRole);
     }
 
     private Role checkRoleExist(){

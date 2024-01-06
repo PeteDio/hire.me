@@ -4,34 +4,28 @@ import com.dillo.hireme.entity.Candidate;
 import com.dillo.hireme.entity.CandidateStatus;
 import com.dillo.hireme.repository.CandidateRepository;
 import com.dillo.hireme.service.CandidateService;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class CandidateServiceImpl implements CandidateService {
-    private
-
-    final CandidateRepository candidateRepository;
+    private final CandidateRepository candidateRepository;
 
     public CandidateServiceImpl(CandidateRepository candidateRepository) {
         this.candidateRepository = candidateRepository;
     }
 
-    // Implement all methods from the CandidateService interface
 
     @Override
-
-
     public List<Candidate> getAllCandidates() {
         return candidateRepository.findAll();
     }
 
     @Override
-
-
     public Candidate getCandidateById(Long id) {
-        return candidateRepository.findById(id).orElse(null); // Optional to handle potential NoSuchElementException
+        return candidateRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -41,7 +35,18 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public void updateCandidate(Long id, Candidate updatedCandidate) {
-        // Implementation provided earlier (including firstName, lastName, email, bio, jobTitle)
+        Candidate existingCandidate = getCandidateById(id);
+        if (existingCandidate != null) {
+            existingCandidate.setFirstName(updatedCandidate.getFirstName());
+            existingCandidate.setLastName(updatedCandidate.getLastName());
+            existingCandidate.setEmail(updatedCandidate.getEmail());
+            existingCandidate.setJobTitle(updatedCandidate.getJobTitle());
+            existingCandidate.setBio(updatedCandidate.getBio());
+            candidateRepository.save(existingCandidate);
+        } else {
+            // Handle "candidate not found"
+            throw new ResourceNotFoundException("Candidate not found with ID: " + id);
+        }
     }
 
     @Override
@@ -49,9 +54,6 @@ public class CandidateServiceImpl implements CandidateService {
         candidateRepository.deleteById(id);
     }
 
-    public List<Candidate> findByCandidateStatus(String statusName) {
-        return candidateRepository.findByCandidateStatus(statusName);
-    }
 
 
 }
