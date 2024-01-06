@@ -2,7 +2,6 @@ package com.dillo.hireme.controller;
 
 import com.dillo.hireme.entity.Candidate;
 import com.dillo.hireme.entity.Interview;
-import com.dillo.hireme.repository.CandidateRepository;
 import com.dillo.hireme.repository.InterviewRepository;
 import com.dillo.hireme.service.CandidateService;
 import com.dillo.hireme.service.InterviewService;
@@ -18,14 +17,13 @@ import java.util.List;
 public class InterviewController {
     private final InterviewService interviewService;
     private final InterviewRepository interviewRepository;
-    private final CandidateRepository candidateRepository;
+
     private final CandidateService candidateService;
 
 
-    public InterviewController(InterviewService interviewService, InterviewRepository interviewRepository,CandidateRepository candidateRepository, CandidateService candidateService) {
+    public InterviewController(InterviewService interviewService, InterviewRepository interviewRepository, CandidateService candidateService) {
         this.interviewService = interviewService;
         this.interviewRepository = interviewRepository;
-        this.candidateRepository=candidateRepository;
         this.candidateService=candidateService;
     }
     // Retrieve All Interviews
@@ -114,5 +112,11 @@ public class InterviewController {
         Interview interview = interviewService.changeStatus(id, updatedStatus);
         return ResponseEntity.ok(interview);
     }
+
+    @GetMapping("/without-notes")
+    public List<Interview> getInterviewsWithoutNotes() {
+        return interviewService.getInterviewsWithoutNotes();
+    }
+
 
 }

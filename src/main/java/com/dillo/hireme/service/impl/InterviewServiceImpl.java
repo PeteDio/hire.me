@@ -66,19 +66,19 @@ public class InterviewServiceImpl implements InterviewService {
 
         return interview;
     }
-    //TODO:finish these methods
+
     @Override
     public List<Interview> getInterviewsWithoutNotes() {
-        return null;
+        return interviewRepository.findByNotesIsNull();
     }
 
     @Override
     public List<Interview> getInterviewsByEmployeeId(Long employeeId) {
-
-        return null;
+        return interviewRepository.findByEmployeeId(employeeId);
     }
+
     @Override
     public List<Interview> getInterviewsByCandidateId(Long candidateId) {
-        return null;
+        return interviewRepository.findByCandidateId(candidateId);
     }
 }
