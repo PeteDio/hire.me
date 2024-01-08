@@ -59,14 +59,13 @@ public class CandidateController {
     public List<Candidate> getCandidateByStatus(@PathVariable String name) {
         // Retrieve CandidateStatus object by name
         CandidateStatus status = candidateStatusRepository.findByName(name);
-        List<Candidate> candidates = new ArrayList<>();
         // Handle potential errors
         if (status == null) {
             throw new ResourceNotFoundException("CandidateStatus not found with name: " + name);
         }
-        candidates = candidateRepository.findByCandidateStatus(name);
-        return candidates;
+        return candidateRepository.findByCandidateStatus(name);
     }
+
 }
 
 

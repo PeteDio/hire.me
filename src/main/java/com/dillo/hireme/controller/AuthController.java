@@ -7,9 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AuthController {
@@ -32,18 +31,21 @@ public class AuthController {
         }
         if (result.hasErrors()) { // Handle validation errors
             model.addAttribute("User", user);
-            return "/register";
+            return "register";
         }
         userService.saveUser(user); // Save the valid user
         return "register";
     }
-    @GetMapping("/index")
-    public String home() {
-        return "index";
-    }
-    @GetMapping("/login")
-    public String landingPage() {
-        return "login";
-    }
 
+
+    @GetMapping("/login")
+    @CrossOrigin(value = "http//localhost:8080")
+    public ModelAndView login(@RequestParam(name = "error", required = false) String error) {
+        ModelAndView response = new ModelAndView("login");
+        // Check if there is an error attribute and add it to the model
+        if (error != null && !error.isEmpty()) {
+            response.addObject("error", "Invalid username or password");
+        }
+        return response;
+    }
 }
