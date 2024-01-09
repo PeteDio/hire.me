@@ -17,15 +17,13 @@ public class AuthController {
     private UserService userService;
 
     @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        User user = new User();
-        model.addAttribute("User", user);
-        return "register";
+    public ModelAndView register() {
+        return new ModelAndView("register");
     }
     @PostMapping("/register/save")
     // Create a new user
     public String register(@Valid @ModelAttribute("User") User user, BindingResult result, Model model) {
-        User existingUser = userService.getUserById(user.getId());
+        User existingUser = userService.getUserByEmail(user.getEmail());
         if (existingUser != null) {
             result.rejectValue("email", null, "There is already an account registered with the same email");
         }
@@ -37,15 +35,26 @@ public class AuthController {
         return "register";
     }
 
-
     @GetMapping("/login")
-    @CrossOrigin(value = "http//localhost:8080")
-    public ModelAndView login(@RequestParam(name = "error", required = false) String error) {
-        ModelAndView response = new ModelAndView("login");
-        // Check if there is an error attribute and add it to the model
-        if (error != null && !error.isEmpty()) {
-            response.addObject("error", "Invalid username or password");
+    public ModelAndView showLoginForm() {
+        return new ModelAndView("login"); // Name of the login form view
+    }
+
+    @PostMapping("/login")
+    public ModelAndView handleLogin(@RequestParam String username, @RequestParam String password, Model model) {
+        User user = userService.authenticate(username, password);
+        if (user != null) {
+            // Authentication successful
+            model.addAttribute("User", user); // Store user object in session
+            return new ModelAndView("dashboard") ; // Redirect to protected area
+        } else {
+            // Authentication failed
+            model.addAttribute("error", "Invalid username or password");
+            return new ModelAndView("login"); // Re-render login form with error message
         }
-        return response;
+    }
+    @GetMapping("/")
+    public ModelAndView showLandingPage ()  {
+        return new ModelAndView("index");
     }
 }
