@@ -5,27 +5,28 @@ import com.dillo.hireme.entity.User;
 import com.dillo.hireme.repository.RoleRepository;
 import com.dillo.hireme.repository.UserRepository;
 import com.dillo.hireme.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
-
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
-        super();
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, @Qualifier("passwordEncoder") PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-
+        this.passwordEncoder = passwordEncoder;
     }
     @Override
     public void saveUser(User user){
         user.setEmail(user.getEmail());
-        user.setPassword(user.getPassword());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         Role role = roleRepository.findByName("coordinator");
         if (role == null) {
@@ -73,13 +74,13 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userToUpdateRole);
     }
 
-    @Override
-    public User authenticate(String username, String password) {
+    public boolean authenticateUser(String username, String password) {
         User user = getUserByEmail(username);
-        if(user.getPassword().equals(password)){
-            return user;
+        if (user != null) {
+            // Check if the provided password matches the stored hashed password
+            return passwordEncoder.matches(password, user.getPassword());
         }
-        return null;
+        return false;
     }
 
     private Role checkRoleExist(){

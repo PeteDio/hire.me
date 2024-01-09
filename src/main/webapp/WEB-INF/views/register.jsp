@@ -14,7 +14,7 @@
     <body>
         <div class="container mx-auto p-4">
             <h1 class="text-3xl font-bold mb-4">Register</h1>
-            <form action="${pageContext.request.contextPath}/registerSubmit" class="">
+            <form action="/register/save" method="post">
                 <div class="mb-4">
                     <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
                     <input type="email" id="email" name="email"

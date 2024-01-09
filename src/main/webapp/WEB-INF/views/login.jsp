@@ -14,7 +14,7 @@
 
 <body>
     <section>
-        <form action="/login" method="post">
+        <form action="${pageContext.request.contextPath}/login" method="post">
             <!-- Username field -->
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required><br><br>
@@ -25,6 +25,9 @@
 
             <!-- Submit button for the form -->
             <input type="submit" value="Login">
+            <p>
+                don't have an account? register here. <a class="register-button" href="${pageContext.request.contextPath}/register">register</a>
+            </p>
         </form>
     </section>
 </body>

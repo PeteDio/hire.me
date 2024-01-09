@@ -40,12 +40,13 @@ public class SecurityConfig {
                                 .logoutSuccessUrl("/"));
         return http.build();
     }
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager();
-    }
     @Bean(name = "passwordEncoder")
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
+    }
+
 }

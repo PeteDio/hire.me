@@ -42,8 +42,9 @@ public class AuthController {
 
     @PostMapping("/login")
     public ModelAndView handleLogin(@RequestParam String username, @RequestParam String password, Model model) {
-        User user = userService.authenticate(username, password);
-        if (user != null) {
+        User user;
+        if (userService.authenticateUser(username, password)) {
+            user = userService.getUserByEmail(username);
             // Authentication successful
             model.addAttribute("User", user); // Store user object in session
             return new ModelAndView("dashboard") ; // Redirect to protected area
