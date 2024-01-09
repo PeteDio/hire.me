@@ -21,13 +21,16 @@ public class SecurityConfig {
 
         http.authorizeRequests()
                         .requestMatchers(
-                                new AntPathRequestMatcher("/")).authenticated()
+                                new AntPathRequestMatcher("/dashboard"),
+                                new AntPathRequestMatcher("/interview"),
+                                new AntPathRequestMatcher("/candidates")).authenticated()
                         .anyRequest().permitAll();
                 http.formLogin(form -> form
                         // this is the URL for the login page
                         .loginPage("/login")
                         // this is the URL to submit the login form
                         .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/dashboard")
                         .permitAll()
                         .failureUrl("/login?error=true"));
 

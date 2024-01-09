@@ -71,4 +71,5 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
 
+
 }

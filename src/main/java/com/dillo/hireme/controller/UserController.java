@@ -20,10 +20,13 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
     }
+
     // Retrieve all users
     @GetMapping("/getAll")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public String getAllUsers(Model model) {
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "userList";
     }
 
     // Retrieve a specific user by ID
@@ -33,9 +36,15 @@ public class UserController {
     }
 
     // Update an existing user
-    @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody User updatedUser) {
-        userService.updateUser(id, updatedUser);
+    @GetMapping("/edit/{userId}")
+    public String editUser(@PathVariable Long userId, Model model) {
+        User user = userService.getUserById(userId);
+        model.addAttribute("user", user);
+
+
+        // Add list of roles for selection
+        model.addAttribute("roles", userService.getAllUserRoles());
+        return "userEdit";
     }
 
     // Delete a user

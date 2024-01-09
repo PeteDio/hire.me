@@ -58,4 +58,8 @@ public class AuthController {
     public ModelAndView showLandingPage ()  {
         return new ModelAndView("index");
     }
+    @GetMapping("/dashboard")
+    public ModelAndView showDashboard(){
+        return new ModelAndView("dashboard");
+    }
 }

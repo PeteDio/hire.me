@@ -7,6 +7,7 @@ import com.dillo.hireme.repository.CandidateStatusRepository;
 import com.dillo.hireme.service.CandidateService;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -27,8 +28,10 @@ public class CandidateController {
 
     // Retrieve all candidates
     @GetMapping("/")
-    public List<Candidate> getAllCandidates() {
-        return candidateService.getAllCandidates();
+    public String getAllCandidates(Model model) {
+        List<Candidate> candidates = candidateService.getAllCandidates();
+        model.addAttribute("candidates",candidates);
+        return "candidatesList";
     }
 
     // Retrieve a specific candidate by ID

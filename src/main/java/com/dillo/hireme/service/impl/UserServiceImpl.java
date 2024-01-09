@@ -83,6 +83,16 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public List<Role> getAllUserRoles() {
+        return roleRepository.findAll();
+    }
+
+    @Override
+    public List<User> getUsersByRoleId(Long roleId) {
+        return userRepository.findByRoleId(roleId);
+    }
+
     private Role checkRoleExist(){
         Role role = new Role();
         role.setName("admin");
