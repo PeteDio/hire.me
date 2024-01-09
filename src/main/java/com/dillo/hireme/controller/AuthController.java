@@ -7,9 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AuthController {
@@ -18,32 +17,44 @@ public class AuthController {
     private UserService userService;
 
     @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        User user = new User();
-        model.addAttribute("User", user);
-        return "register";
+    public ModelAndView register() {
+        return new ModelAndView("register");
     }
     @PostMapping("/register/save")
     // Create a new user
     public String register(@Valid @ModelAttribute("User") User user, BindingResult result, Model model) {
-        User existingUser = userService.getUserById(user.getId());
+        User existingUser = userService.getUserByEmail(user.getEmail());
         if (existingUser != null) {
             result.rejectValue("email", null, "There is already an account registered with the same email");
         }
         if (result.hasErrors()) { // Handle validation errors
             model.addAttribute("User", user);
-            return "/register";
+            return "register";
         }
         userService.saveUser(user); // Save the valid user
         return "register";
     }
-    @GetMapping("/index")
-    public String home() {
-        return "index";
-    }
+
     @GetMapping("/login")
-    public String landingPage() {
-        return "login";
+    public ModelAndView showLoginForm() {
+        return new ModelAndView("login"); // Name of the login form view
     }
 
+    @PostMapping("/login")
+    public ModelAndView handleLogin(@RequestParam String username, @RequestParam String password, Model model) {
+        User user = userService.authenticate(username, password);
+        if (user != null) {
+            // Authentication successful
+            model.addAttribute("User", user); // Store user object in session
+            return new ModelAndView("dashboard") ; // Redirect to protected area
+        } else {
+            // Authentication failed
+            model.addAttribute("error", "Invalid username or password");
+            return new ModelAndView("login"); // Re-render login form with error message
+        }
+    }
+    @GetMapping("/")
+    public ModelAndView showLandingPage ()  {
+        return new ModelAndView("index");
+    }
 }

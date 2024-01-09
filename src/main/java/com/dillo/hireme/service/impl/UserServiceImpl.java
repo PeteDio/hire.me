@@ -73,6 +73,15 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userToUpdateRole);
     }
 
+    @Override
+    public User authenticate(String username, String password) {
+        User user = getUserByEmail(username);
+        if(user.getPassword().equals(password)){
+            return user;
+        }
+        return null;
+    }
+
     private Role checkRoleExist(){
         Role role = new Role();
         role.setName("admin");

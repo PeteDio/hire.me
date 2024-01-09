@@ -17,4 +17,5 @@ public interface UserService {
 
     void deleteUser(Long id);
     void updateUserRole(Long id, String roleName);
+    User authenticate(String username, String password);
 }
