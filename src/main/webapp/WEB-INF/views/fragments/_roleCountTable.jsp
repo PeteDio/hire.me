@@ -1,4 +1,4 @@
-<div class="bg-white shadow-md rounded px-8 pt-6 pb-8">
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 dashtable">
     <h2 class="text-2xl font-bold mb-4">Employee Role Distribution</h2>
     <table class="w-full table-auto">
         <thead>

@@ -10,7 +10,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Lemon&display=swap" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="fragments/_header.jsp" />
-<h1>hire.me landing page</h1>
+<header class="bg-gray-800 text-white py-4 px-6 flex items-center justify-between">
+  <h1 class="text-2xl font-bold">Hire.me</h1>
+  <nav>
+    <a href="/register" class="text-white hover:text-blue-500">Register</a>
+    <a href="/login" class="text-white hover:text-blue-500 ml-4">Login</a>
+  </nav>
+</header>
+<main class="container mx-auto mt-8 px-4">
+  <h2 class="text-3xl font-bold mb-4">Streamline Your Hiring Process</h2>
+  <p class="text-lg mb-8">Hire.me is a web application designed to make recruiting easier and more efficient. Manage candidates, schedule interviews, and make better hiring decisions, all in one place.</p>
+
+  </main>
 </body>
 </html>
