@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Lemon&display=swap" rel="stylesheet">
         <link href="/pub/css/main.css" rel="stylesheet">
     </head>
+
     <body>
         <div class="container mx-auto p-4">
             <h1 class="text-3xl font-bold mb-4">Register</h1>
@@ -39,7 +40,8 @@
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         required>
                 </div>
-                <button type="submit" style="background-color: #EDF67D; color: #564592" class="font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</button>
+                <button type="submit" style="background-color: #EDF67D; color: #564592"
+                    class="font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</button>
             </form>
 
         </div>

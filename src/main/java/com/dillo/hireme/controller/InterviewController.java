@@ -55,7 +55,7 @@ public class InterviewController {
     @PostMapping("/")
     public String updateInterview(@ModelAttribute("interview") Interview interview) {
         interviewService.updateInterview(interview.getId(), interview);
-        return "redirect:/interviews/";
+        return "redirect:/interview/";
     }
 
     // Retrieve a specific interview by id
@@ -70,7 +70,7 @@ public class InterviewController {
     @PostMapping("/new/{id}")
     public String scheduleInterview(@PathVariable Long id, @ModelAttribute("interview") Interview interview) {
         interviewService.saveInterview(interview);
-        return "redirect:/interviews/";
+        return "redirect:/interview/";
     }
     @GetMapping("/new/{id}")
     public String showScheduleInterview(Model model, @PathVariable Long id) {
@@ -133,7 +133,7 @@ public class InterviewController {
         interviewRepository.save(interview);
 
         // Redirect to the interview details page or a success page
-        return new ModelAndView("redirect:/interviews/" + interviewId);
+        return new ModelAndView("redirect:/interview/" + interviewId);
     }
     /**
      * Adds notes to an interview and updates the candidate's status.
