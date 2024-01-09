@@ -1,6 +1,10 @@
 package com.dillo.hireme.controller;
 
+
 import com.dillo.hireme.entity.User;
+import com.dillo.hireme.repository.CandidateStatusRepository;
+import com.dillo.hireme.repository.InterviewRepository;
+import com.dillo.hireme.repository.UserRepository;
 import com.dillo.hireme.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,16 +14,39 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+import java.util.Map;
+
 @Controller
 public class AuthController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private CandidateStatusRepository candidateStatusRepository;
+    @Autowired
+    private InterviewRepository interviewRepository;
+    @Autowired
+    private UserRepository userRepository;
 
+    /**
+     * Handles GET requests to the "/register" endpoint, rendering the registration form.
+     *
+     * @return ModelAndView object containing the registration form view
+     */
     @GetMapping("/register")
     public ModelAndView register() {
         return new ModelAndView("register");
     }
+
+    /**
+     * Handles POST requests to the "/register/save" endpoint, processing user registration.
+     *
+     * @param user     The user object to be registered
+     * @param result   BindingResult object to capture validation errors
+     * @param model    The model to hold data for the view
+     * @return String representing the view name to render
+     */
     @PostMapping("/register/save")
     // Create a new user
     public String register(@Valid @ModelAttribute("User") User user, BindingResult result, Model model) {
@@ -59,7 +86,21 @@ public class AuthController {
         return new ModelAndView("index");
     }
     @GetMapping("/dashboard")
-    public ModelAndView showDashboard(){
+    public ModelAndView showDashboard(Model model) {
+
+        List<Object[]> roleCounts = userRepository.getRoleCounts();
+        List<Map<String, Long>> candidateStatusCounts = candidateStatusRepository.getStatusCounts();
+        long rejectedCandidateCount = candidateStatusRepository.countByCandidateStatus("Rejected");
+        long hiredCandidateCount = candidateStatusRepository.countByCandidateStatus("Hired");
+        long completedInterviewCount = interviewRepository.countByCompleted(true);
+
+        // Add data to the model
+        model.addAttribute("roleCounts", roleCounts);
+        model.addAttribute("candidateStatusCounts", candidateStatusCounts);
+        model.addAttribute("rejectedCandidateCount", rejectedCandidateCount);
+        model.addAttribute("hiredCandidateCount", hiredCandidateCount);
+        model.addAttribute("completedInterviewCount", completedInterviewCount);
+
         return new ModelAndView("dashboard");
     }
 }

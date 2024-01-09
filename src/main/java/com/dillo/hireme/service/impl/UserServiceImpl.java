@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
-
+/**
+ * Implementation of the UserService interface, providing CRUD operations for users and their roles.
+ */
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -23,6 +25,11 @@ public class UserServiceImpl implements UserService {
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
+    /**
+     * Saves a new user to the database, encoding the password and setting a default role.
+     *
+     * @param user The user to save
+     */
     @Override
     public void saveUser(User user){
         user.setEmail(user.getEmail());

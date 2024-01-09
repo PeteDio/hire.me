@@ -10,9 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Lemon&display=swap" rel="stylesheet">
 </head>
 <body>
-<nav>
-    <a href="/user/getAll">Users</a><a href="/candidate/">Candidates</a><a href="/interview/">interview</a>
-</nav>
-<h1>hire.me DashBoard</h1>
+<jsp:include page="fragments/_header.jsp" />
+
+<main class="container display flex-col">
+    <section class="w-4/5 flex items center mx-auto p-6">
+        <jsp:include page="fragments/_candidateStatusTable.jsp" />
+        <jsp:include page="fragments/_hiringOutcomeTable.jsp" />
+        <jsp:include page="fragments/_roleCountTable.jsp" />
+        <jsp:include page="fragments/_completedInterviewsTable.jsp" />
+    </section>
+</main>
 </body>
 </html>

@@ -14,9 +14,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-
+/**
+ * Controller responsible for handling CRUD operations related to interviews.
+ */
 @Controller
 @RequestMapping("/interview")
 public class InterviewController {
@@ -40,6 +43,13 @@ public class InterviewController {
         List<Interview> interviews = interviewService.getAllInterviews();
         model.addAttribute("interviews", interviews);
         return "interviews";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String showInterviewEdit(@PathVariable Long id, Model model) {
+        Interview interview = interviewService.getInterviewById(id);
+        model.addAttribute("interviews", interview);
+        return "editInterviews";
     }
 
     @PostMapping("/")
@@ -101,8 +111,37 @@ public class InterviewController {
         List<Interview> interviews = interviewService.getInterviewsByEmployeeId(employeeId);
         return ResponseEntity.ok(interviews);
     }
+    /**
+     * Marks an interview as completed and optionally performs additional actions.
+     *
+     * @param interviewId The ID of the interview to be completed
+     * @return ModelAndView object redirecting to the interview details page or a success page
+     * @throws ResourceNotFoundException if the interview is not found
+     */
+    @PostMapping("/interviews/{interviewId}/complete")
+    public ModelAndView completeInterview(@PathVariable Long interviewId) {
+        // Fetch the interview
+        Interview interview = interviewRepository.findById(interviewId)
+                .orElseThrow(() -> new ResourceNotFoundException("Interview not found with ID: " + interviewId));
 
-    // Endpoint to add notes and change candidate_status_id to '3', 'Hiring Manager Screen'
+        // Mark the interview as completed
+        interview.setCompleted(true);
+
+        // Optional: Add additional logic for completed interviews (e.g., sending notifications)
+
+        // Save the updated interview
+        interviewRepository.save(interview);
+
+        // Redirect to the interview details page or a success page
+        return new ModelAndView("redirect:/interviews/" + interviewId);
+    }
+    /**
+     * Adds notes to an interview and updates the candidate's status.
+     *
+     * @param id The ID of the interview to update
+     * @param updatedInterview The updated Interview object containing the new notes
+     * @return ResponseEntity with the updated Interview object
+     */
     @PutMapping("/{id}/notes")
     public ResponseEntity<Interview> addNotesAndChangeStatus(@PathVariable Long id, @RequestBody Interview updatedInterview) {
         Interview interview = interviewService.getInterviewById(id);

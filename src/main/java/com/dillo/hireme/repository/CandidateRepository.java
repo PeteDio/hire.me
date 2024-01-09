@@ -8,9 +8,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     @Query("SELECT c FROM Candidate c JOIN c.candidateStatus cs WHERE cs.name = :statusName")
     List<Candidate> findByCandidateStatus(@Param("statusName") String statusName);
+
 }

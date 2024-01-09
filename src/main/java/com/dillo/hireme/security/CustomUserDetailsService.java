@@ -27,6 +27,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+    /**
+     * Loads a user's details by their email address for authentication purposes.
+     *
+     * @param email The user's email address
+     * @return UserDetails object containing the user's information and authorities
+     * @throws UsernameNotFoundException If the user is not found
+     */
     @Transactional
     @Override
     public UserDetails loadUserByUsername(String email) {

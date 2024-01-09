@@ -14,4 +14,6 @@ public interface InterviewRepository extends JpaRepository<Interview, Long> {
     List<Interview> findByEmployeeId(Long employeeId);
 
     List<Interview> findByCandidateId(Long candidateId);
+
+    long countByCompleted(boolean b);
 }

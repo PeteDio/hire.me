@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Controller responsible for handling CRUD operations related to candidates.
+ */
 @Controller
 @RequestMapping("/candidate")
 public class CandidateController {
+    // Inject required services and repositories
     private final CandidateService candidateService;
     private final CandidateStatusRepository candidateStatusRepository;
     private final CandidateRepository candidateRepository;
@@ -26,7 +29,12 @@ public class CandidateController {
         this.candidateRepository= candidateRepository;
     }
 
-    // Retrieve all candidates
+    /**
+     * Retrieves a list of all candidates and renders them in the "candidatesList" view.
+     *
+     * @param model The model to hold data for the view
+     * @return String representing the name of the view to render
+     */
     @GetMapping("/")
     public String getAllCandidates(Model model) {
         List<Candidate> candidates = candidateService.getAllCandidates();
@@ -57,7 +65,13 @@ public class CandidateController {
     public void deleteCandidate(@PathVariable Long id) {
         candidateService.deleteCandidate(id);
     }
-    //Candidate by Status
+    /**
+     * Retrieves candidates based on a specific candidate status.
+     *
+     * @param name The name of the candidate status to filter by
+     * @return List of candidates matching the specified status
+     * @throws ResourceNotFoundException if the specified status is not found
+     */
     @GetMapping("/status/{name}")
     public List<Candidate> getCandidateByStatus(@PathVariable String name) {
         // Retrieve CandidateStatus object by name
