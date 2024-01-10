@@ -1,0 +1,37 @@
+
+
+body{
+    background-color: #F896D8;
+    width: 100%;
+
+}
+button{
+    background-color: #EDF67D;
+}
+
+.dashtable{
+    width: 25%;
+}
+
+@media (max-width: 768px) {
+    table {
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tr {
+        border-bottom: 1px solid #ddd;
+    }
+
+    td {
+        display: block;
+        padding: 8px 15px;
+    }
+
+    td:first-child {
+        font-weight: bold;
+    }
+}
