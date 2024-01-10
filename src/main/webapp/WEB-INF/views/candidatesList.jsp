@@ -13,6 +13,7 @@
     <body>
         <jsp:include page="fragments/_header.jsp" />
         <h1>Candidates List</h1>
+        <a href="/candidate/add" class="bg-purple-500 hover:bg-purple-700 text-white font-bold rounded">Add new Candidate</a>
         <div class="overflow-auto rounded-lg shadow-md">
             <table class="w-full text-left table-auto">
                 <thead>

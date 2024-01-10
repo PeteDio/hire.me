@@ -14,6 +14,7 @@
         <body class="container mx-auto p-4">
             <h1 class="text-2xl font-bold mb-4">Schedule Interview for ${candidate.firstName}</h1>
           
+            <%--@elvariable id="interview" type="com.dillo.hireme.entity.Interview"--%>
             <form:form action="/interview/new/${candidate.id}" method="post" modelAttribute="interview" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
               <table class="w-full mb-4">
                 <tr>

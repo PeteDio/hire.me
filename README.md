@@ -4,6 +4,11 @@
 
 Hire.me is a web application designed to streamline the recruitment process for organizations. It provides a centralized platform for managing candidates, scheduling interviews, tracking progress, and making informed hiring decisions.
 
+## Please use provided sql dump in root directory
+## Signin credentionals for admin 
+username: admin
+password: asdf1234
+
 ## Key Features
 
 Candidate management:

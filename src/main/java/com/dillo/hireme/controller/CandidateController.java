@@ -5,9 +5,11 @@ import com.dillo.hireme.entity.CandidateStatus;
 import com.dillo.hireme.repository.CandidateRepository;
 import com.dillo.hireme.repository.CandidateStatusRepository;
 import com.dillo.hireme.service.CandidateService;
+import jakarta.validation.Valid;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -49,9 +51,14 @@ public class CandidateController {
     }
 
     // Add a new candidate
-    @PostMapping("/")
-    public void addCandidate(@RequestBody Candidate candidate) {
-        candidateService.saveCandidate(candidate);
+    @PostMapping("/add")
+    public String addCandidate(@Valid @ModelAttribute("candidate") Candidate candidate, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("candidate", candidate); // Add candidate back to model for error display
+            return "addCandidate"; // Return to the form view for correction
+        }
+        candidateService.saveCandidate(candidate); // Save valid candidate
+        return "candidateList"; // Redirect to a success page or display a success message
     }
 
     // Update an existing candidate
@@ -81,6 +88,12 @@ public class CandidateController {
             throw new ResourceNotFoundException("CandidateStatus not found with name: " + name);
         }
         return candidateRepository.findByCandidateStatus(name);
+    }
+    @GetMapping("/add")
+    public String showAddCandidate(Model model){
+        Candidate candidate = new Candidate();
+        model.addAttribute("candidate", candidate);
+        return "addCandidate";
     }
 
 }

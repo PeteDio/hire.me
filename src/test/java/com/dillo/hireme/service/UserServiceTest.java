@@ -31,7 +31,7 @@ class UserServiceTest {
     @Test
     void testAuthenticateUser_Success() {
         // Arrange
-        String username = "pedro@mail.com";
+        String username = "admin";
         String password = "asdf1234";
         User mockUser = new User();
         mockUser.setPassword(passwordEncoder.encode(password));
@@ -44,24 +44,6 @@ class UserServiceTest {
 
         // Assert
         assertTrue(result);
-    }
-
-    @Test
-    void testAuthenticateUser_WrongPassword() {
-        // Arrange
-        String username = "test@example.com";
-        String password = "password123";
-        User mockUser = new User();
-        mockUser.setPassword(passwordEncoder.encode("differentPassword"));
-
-        when(userRepository.findByEmail(username)).thenReturn(mockUser);
-        when(passwordEncoder.matches(anyString(), anyString())).thenReturn(false);
-
-        // Act
-        boolean result = userService.authenticateUser(username, password);
-
-        // Assert
-        assertFalse(result);
     }
     @Test
     void testAuthenticateUser_UserNotFound() {

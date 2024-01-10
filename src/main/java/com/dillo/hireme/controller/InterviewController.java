@@ -48,14 +48,8 @@ public class InterviewController {
     @GetMapping("/edit/{id}")
     public String showInterviewEdit(@PathVariable Long id, Model model) {
         Interview interview = interviewService.getInterviewById(id);
-        model.addAttribute("interviews", interview);
+        model.addAttribute("interview", interview);
         return "editInterviews";
-    }
-
-    @PostMapping("/")
-    public String updateInterview(@ModelAttribute("interview") Interview interview) {
-        interviewService.updateInterview(interview.getId(), interview);
-        return "redirect:/interview/";
     }
 
     // Retrieve a specific interview by id
