@@ -13,28 +13,29 @@
 </head>
 
 <body>
-<header class="bg-gray-800 text-white py-4 px-6 flex flex-col items-center justify-between">
-    <h1 class="text-4xl font-bold items-center">Hire.me</h1>
-</header>
-    <section class="container mx-auto my-3 p-4 bg-white rounded-lg shadow-md">
-        <form action="/login" method="post" class="flex flex-col space-y-4">
+    <header class="py-4 px-6 flex flex-col items-center justify-between">
+        <a class="text-4xl font-bold items-center" href="/">Hire.me</a>
+    </header>
+    <h1 class="text-3xl font-bold mb-4 text-center">Login</h1>
+    <section class="container mx-auto p-4 flex items-center w-2/5 shadow-sm m-6 p-6">
+        <form action="/login" method="post" class="colorpurple flex flex-col w-full items-center p-6">
             <div class="mb-4">
-                <label for="username" class="block text-gray-700 font-bold mb-2">Username:</label>
+                <label for="username" class="block text-white font-bold mb-2">Username:</label>
                 <input type="text" id="username" name="username"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     required>
             </div>
             <div class="mb-6">
-                <label for="password" class="block text-gray-700 font-bold mb-2">Password:</label>
+                <label for="password" class="block text-white font-bold mb-2">Password:</label>
                 <input type="password" id="password" name="password"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     required>
             </div>
             <div class="flex items-center justify-between">
-                <button type="submit"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
-                <p class="text-gray-600">Don't have an account? Register here. <a href="/register"
-                        class="underline text-blue-500 hover:text-blue-700">Register</a>
+                <button type="submit" style="background-color: #EDF67D; color: #564592"
+                    class="font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
+                <p class="text-white">Don't have an account? Register here. <a href="/register"
+                        class="underline hover:text-blue-700">Register</a>
                 </p>
             </div>
         </form>

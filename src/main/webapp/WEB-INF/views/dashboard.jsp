@@ -15,8 +15,8 @@
 <body>
     <jsp:include page="fragments/_header.jsp" />
 
-    <main class="container flex w-screen">
-        <section class="flex items center p-6">
+    <main class="flex w-screen">
+        <section class="flex items center p-6 justify-between w-full">
             <jsp:include page="fragments/_hiringOutcomeTable.jsp" />
             <jsp:include page="fragments/_completedInterviewsTable.jsp" />
             <jsp:include page="fragments/_candidateStatusTable.jsp" />
