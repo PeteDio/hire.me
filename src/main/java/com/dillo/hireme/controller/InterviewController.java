@@ -138,7 +138,7 @@ public class InterviewController {
      * @param updatedInterview The updated Interview object containing the new notes
      * @return ResponseEntity with the updated Interview object
      */
-    @PutMapping("/{id}/notes")
+    @PutMapping("/notes/{id}")
     public ResponseEntity<Interview> addNotesAndChangeStatus(@PathVariable Long id, @RequestBody Interview updatedInterview) {
         Interview interview = interviewService.getInterviewById(id);
         interview.setNotes(updatedInterview.getNotes());

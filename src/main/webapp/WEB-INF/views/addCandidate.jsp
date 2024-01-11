@@ -36,9 +36,11 @@
                     </div>
                     <div class="mb-6">
                         <label for="job_title" class="block text-gray-700 font-bold mb-2">Job Title</label>
-                        <input type="text" id="job_title" name="job_title"
+                        <select  type="text" id="job_title" name="job_title"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            required>
+                                 required>
+                            <option value="Software Developer">Software Developer</option>
+                        </select>
                     </div>
                 </div>
                 <input type="submit" value="Add Candidate"

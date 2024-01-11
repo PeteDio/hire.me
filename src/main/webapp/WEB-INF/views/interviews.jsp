@@ -54,7 +54,9 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">${interview.employee.firstName}
                                                     ${interview.employee.lastName}</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">${interview.datetime}</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">${interview.notes}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <a href="/interview/notes/${interview.id}">Add Notes</a>
+                                                </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <a href="/interview/edit/${interview.id}">Edit</a>
                                                 </td>
