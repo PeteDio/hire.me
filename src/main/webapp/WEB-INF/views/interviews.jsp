@@ -5,7 +5,6 @@
                 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
                     <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
                         <html>
-
                         <head>
                             <title>All Interviews</title>
                             <script src="https://cdn.tailwindcss.com"></script>
@@ -14,10 +13,8 @@
                             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                             <link href="https://fonts.googleapis.com/css2?family=Lemon&display=swap" rel="stylesheet">
                         </head>
-
                         <body>
                             <jsp:include page="fragments/_header.jsp" />
-
                             <h1 class="text-2xl font-bold mb-4">All Interviews</h1>
                             <div class="overflow-auto rounded-lg shadow-md">
                                 <table class="w-full text-left table-auto">
@@ -45,15 +42,18 @@
                                             </th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
                                         <c:forEach items="${interviews}" var="interview">
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">${interview.candidate.firstName}
-                                                    ${interview.candidate.lastName}</td>
+                                                    ${interview.candidate.lastName}
+                                                </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">${interview.employee.firstName}
-                                                    ${interview.employee.lastName}</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">${interview.datetime}</td>
+                                                    ${interview.employee.lastName}
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                        ${interview.datetime}
+                                                </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <a href="/interview/notes/${interview.id}">Add Notes</a>
                                                 </td>
@@ -67,5 +67,4 @@
                             </div>
                             <script src="/pub/js/main.js"></script>
                         </body>
-
                         </html>

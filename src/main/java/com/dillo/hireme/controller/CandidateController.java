@@ -58,6 +58,9 @@ public class CandidateController {
             model.addAttribute("candidate", candidate); // Add candidate back to model for error display
             return "addCandidate"; // Return to the form view for correction
         }
+
+        //add candidate status to candidate
+        candidate.setCandidateStatus(candidateStatusRepository.findByName("Applied"));
         candidateService.saveCandidate(candidate); // Save valid candidate
         return "redirect:/candidate/"; // Redirect to a success page or display a success message
     }
