@@ -11,3 +11,13 @@ body{
     width: 25%;
 }
 
+header{
+    background-color: #395C6B;
+    color: #fff;
+}
+.colorpurple{
+    background-color: #190933;
+}
+.inputcontainer{
+    width: 65%;
+}

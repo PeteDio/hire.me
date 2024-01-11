@@ -1,4 +1,4 @@
-<header class="bg-gray-800 text-white py-4 px-6 flex items-center sm:justify-between justify-start shadow-md">
+<header class="py-4 px-6 flex items-center sm:justify-between justify-start shadow-lg h-32">
     <a href="/" class="text-2xl font-bold tracking-tight">hire.me</a>
     <div class="hidden sm:block">
         <ul class="flex items-center flex-row">

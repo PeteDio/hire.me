@@ -13,7 +13,7 @@
 </head>
 
 <body class="h-full">
-  <header class="bg-gray-800 text-white py-4 px-6 flex items-center sm:justify-between justify-start shadow-md h-32">
+  <header class="py-4 px-6 flex items-center sm:justify-between justify-start shadow-lg h-32">
     <h1 class="text-2xl font-bold">Hire.me</h1>
     <nav>
       <a href="/register" class="text-white hover:text-blue-500">Register</a>
@@ -22,7 +22,7 @@
   </header>
   <main class="flex-col flex items-center">
     <h2 class="text-4xl font-bold p-4 mb-4 w-full text-center">Streamline Your Hiring Process</h2>
-    <section class="w-3/4 bg-gray-800 text-white text-bold shadow-lg h-1/2 flex items-center">
+    <section class="colorpurple w-3/4 text-white text-bold shadow-lg h-1/2 flex items-center">
       <p class="w-1/2 p-2 m-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo laborum eligendi, facilis
         rem
         deleniti
