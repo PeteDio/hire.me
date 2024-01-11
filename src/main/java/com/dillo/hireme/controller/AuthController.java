@@ -59,7 +59,7 @@ public class AuthController {
             return "register";
         }
         userService.saveUser(user); // Save the valid user
-        return "register";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")

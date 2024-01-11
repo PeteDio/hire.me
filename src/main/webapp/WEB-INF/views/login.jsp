@@ -13,7 +13,10 @@
 </head>
 
 <body>
-    <section class="container mx-auto p-4 bg-white rounded-lg shadow-md">
+<header class="bg-gray-800 text-white py-4 px-6 flex flex-col items-center justify-between">
+    <h1 class="text-4xl font-bold items-center">Hire.me</h1>
+</header>
+    <section class="container mx-auto my-3 p-4 bg-white rounded-lg shadow-md">
         <form action="/login" method="post" class="flex flex-col space-y-4">
             <div class="mb-4">
                 <label for="username" class="block text-gray-700 font-bold mb-2">Username:</label>

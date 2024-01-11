@@ -44,7 +44,7 @@ public class User {
     /**
      * The role assigned to the user.
      */
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role")
     private Role role;
 }

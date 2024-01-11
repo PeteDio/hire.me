@@ -13,6 +13,12 @@
     </head>
 
     <body>
+    <header class="bg-gray-800 text-white py-4 px-6 flex items-center justify-between">
+        <h1 class="text-2xl font-bold">Hire.me</h1>
+        <nav>
+            <a href="/" class="text-white hover:text-blue-500 ml-4">Home</a>
+        </nav>
+    </header>
         <div class="container mx-auto p-4">
             <h1 class="text-3xl font-bold mb-4">Register</h1>
             <form action="/register/save" method="post">

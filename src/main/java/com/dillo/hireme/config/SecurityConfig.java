@@ -23,6 +23,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 new AntPathRequestMatcher("/dashboard"),
                                 new AntPathRequestMatcher("/interview"),
+                                new AntPathRequestMatcher("/user"),
                                 new AntPathRequestMatcher("/candidates")).authenticated();
                 http.formLogin(form -> form
                         // this is the URL for the login page

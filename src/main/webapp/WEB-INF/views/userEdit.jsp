@@ -14,7 +14,9 @@
 <div class="container mx-auto p-4">
     <h1 class="text-2xl font-bold mb-4">Edit User</h1>
     <%--@elvariable id="user" type="com.dillo.hireme.entity.User"--%>
-    <form:form action="/user/update" method="post" modelAttribute="user" class="space-y-4">
+    <%--@elvariable id="role" type="com.dillo.hireme.entity.Role"--%>
+<%--    TODO: fix action --%>
+    <form:form action="/user/update/${user.id}/${role.name}" id="form" method="post" modelAttribute="user" class="space-y-4">
         <div class="grid grid-cols-2 gap-4">
             <div class="col-span-1">
                 <label for="id" class="block text-gray-700 font-bold mb-2">ID:</label>
@@ -33,6 +35,7 @@
             </div>
             <div class="col-span-1">
                 <form:select path="role.id" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+
                     <%--@elvariable id="roles" type="com.dillo.hireme.entity.Role"--%>
                     <c:forEach items="${roles}" var="role">
                         <form:option value="${role.id}" label="${role.name}" />

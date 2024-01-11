@@ -73,4 +73,9 @@ public class UserController {
     public void delete(@PathVariable Long id) {
         userService.deleteUser(id);
     }
+    @PostMapping("/update/{roleName}/{userId}")
+    public String updateUserRole(@PathVariable Long id, @PathVariable String Name){
+        userService.updateUserRole(id,Name);
+        return "redirect:user/getAll";
+    }
 }
