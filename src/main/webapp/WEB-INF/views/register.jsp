@@ -26,25 +26,25 @@
                     <div class="inputcontainer mb-4 p-4 ">
                         <label for="email" class="block text-white font-bold mb-2">Email</label>
                         <input type="email" id="email" name="email"
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                             required>
                     </div>
                     <div class="inputcontainer mb-4 p-4 ">
                         <label for="firstName" class="block text-white font-bold mb-2">First Name</label>
                         <input type="text" id="firstName" name="firstName"
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                             required>
                     </div>
                     <div class="inputcontainer mb-4 p-4 ">
                         <label for="lastName" class="block text-white font-bold mb-2">Last Name</label>
                         <input type="text" id="lastName" name="lastName"
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                             required>
                     </div>
                     <div class="inputcontainer mb-4 p-4 ">
                         <label for="password" class="block text-white font-bold mb-2">Password</label>
                         <input type="password" id="password" name="password"
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                             required>
                     </div>
                     <button type="submit" style="background-color: #EDF67D; color: #564592"

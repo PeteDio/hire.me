@@ -4,6 +4,7 @@
     <head>
         <title>Candidates List</title>
         <script src="https://cdn.tailwindcss.com"></script>
+        <link href="/pub/css/normalize.css" rel="stylesheet">
         <link href="/pub/css/main.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,19 +13,19 @@
 
     <body>
         <jsp:include page="fragments/_header.jsp" />
-        <h1>Candidates List</h1>
-        <a href="/candidate/add" class="bg-purple-500 hover:bg-purple-700 text-white font-bold rounded">Add new Candidate</a>
-        <div class="overflow-auto rounded-lg shadow-md">
-            <table class="w-full text-left table-auto">
+        <h1 class="text-4xl font-bold p-4 mb-4 w-full text-center">Candidates List <a href="/candidate/add" class="w-1 rounded">+</a></h1>
+    
+        <div class="overflow-auto rounded-lg flex flex-col items-center">
+            <table class="text-left table-auto w-5/6 colorpurple text-white shadow-lg">
                 <thead>
                     <tr>
-                        <th class="px-4 py-2 font-bold text-gray-500 bg-gray-100 border-b">First Name</th>
-                        <th class="px-4 py-2 font-bold text-gray-500 bg-gray-100 border-b">Last Name</th>
-                        <th class="px-4 py-2 font-bold text-gray-500 bg-gray-100 border-b">Email</th>
-                        <th class="px-4 py-2 font-bold text-gray-500 bg-gray-100 border-b">Job Title</th>
-                        <th class="px-4 py-2 font-bold text-gray-500 bg-gray-100 border-b">Bio</th>
-                        <th class="px-4 py-2 font-bold text-gray-500 bg-gray-100 border-b">Candidate Status</th>
-                        <th class="px-4 py-2 font-bold text-gray-500 bg-gray-100 border-b">Actions</th>
+                        <th class="px-4 py-2 border-b">First Name</th>
+                        <th class="px-4 py-2 border-b">Last Name</th>
+                        <th class="px-4 py-2 border-b">Email</th>
+                        <th class="px-4 py-2 border-b">Job Title</th>
+                        <th class="px-4 py-2 border-b">Bio</th>
+                        <th class="px-4 py-2 border-b">Candidate Status</th>
+                        <th class="px-4 py-2 border-b">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,7 +41,7 @@
                                     ${candidate.candidateStatus.name}</td>
                                 <td class="px-4 py-2 border-b flex items-center gap-2">
                                     <a href="/interview/new/${candidate.id}"
-                                        class="text-blue-500 hover:underline">Schedule Interview</a>
+                                        class="text-white hover:underline hover:text-blue">Schedule Interview</a>
                                 </td>
                             </tr>
                         </c:forEach>
