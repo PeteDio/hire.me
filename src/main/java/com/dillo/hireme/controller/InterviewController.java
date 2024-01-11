@@ -63,6 +63,8 @@ public class InterviewController {
     }
     @PostMapping("/new/{id}")
     public String scheduleInterview(@PathVariable Long id, @ModelAttribute("interview") Interview interview) {
+        Candidate candidate = candidateService.getCandidateById(id);
+        interview.setCandidate(candidate);
         interviewService.saveInterview(interview);
         return "redirect:/interview/";
     }

@@ -17,11 +17,6 @@
             <%--@elvariable id="interview" type="com.dillo.hireme.entity.Interview"--%>
             <form:form action="/interview/new/${candidate.id}" method="post" modelAttribute="interview" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"><%--@elvariable id="candidate" type="com.dillo.hireme.entity.Candidate"--%>
               <table class="w-full mb-4">
-                 <tr>
-                     <td class="px-6 py-4">
-                        <form hidden="true" path="candidate.id" value="${candidate.id}"/>
-                     </td>
-                 </tr>
                 <tr>
                   <td class="px-6 py-4 font-medium text-gray-700">Date Time:</td>
                   <td class="px-6 py-4">
