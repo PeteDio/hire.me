@@ -53,13 +53,15 @@ public class CandidateController {
     // Add a new candidate
     @PostMapping("/add")
     public String addCandidate(@Valid @ModelAttribute("candidate") Candidate candidate, BindingResult result, Model model) {
+
         if (result.hasErrors()) {
             model.addAttribute("candidate", candidate); // Add candidate back to model for error display
             return "addCandidate"; // Return to the form view for correction
         }
         candidateService.saveCandidate(candidate); // Save valid candidate
-        return "candidateList"; // Redirect to a success page or display a success message
+        return "redirect:/candidate/"; // Redirect to a success page or display a success message
     }
+
 
     // Update an existing candidate
     @PutMapping("/{id}")
