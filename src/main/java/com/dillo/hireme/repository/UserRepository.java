@@ -16,4 +16,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT u.role.name, COUNT(u.role) FROM User u GROUP BY u.role.name")
     List<Object[]> getRoleCounts();
+
 }

@@ -2,6 +2,7 @@ package com.dillo.hireme.service.impl;
 
 import com.dillo.hireme.entity.Role;
 import com.dillo.hireme.entity.User;
+import com.dillo.hireme.exceptions.UserNotFoundException;
 import com.dillo.hireme.repository.RoleRepository;
 import com.dillo.hireme.repository.UserRepository;
 import com.dillo.hireme.service.UserService;
@@ -50,7 +51,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
+        try {
+            return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        } catch (UserNotFoundException e) {
+            throw e;
+        }
     }
 
     @Override
