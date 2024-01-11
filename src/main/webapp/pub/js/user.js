@@ -1,6 +1,9 @@
 (()=>{
     const select = document.querySelector("select");
     const form = document.querySelector("#form")
-    form.action= form.action+select.value;
-    console.log(form.action);
+    select.addEventListener("change", (event) => {
+        const selectedValue = event.target.value;
+        form.action = form.action + selectedValue;
+    });
+
 })();
