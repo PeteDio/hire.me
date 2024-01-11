@@ -2,35 +2,12 @@
 
 body{
     width: 100%;
+    background-color: #9ED0E6;
 
 }
-button{
-    background-color: #EDF67D;
-}
+
 
 .dashtable{
     width: 25%;
 }
 
-@media (max-width: 768px) {
-    table {
-        display: block;
-    }
-
-    thead {
-        display: none;
-    }
-
-    tr {
-        border-bottom: 1px solid #ddd;
-    }
-
-    td {
-        display: block;
-        padding: 8px 15px;
-    }
-
-    td:first-child {
-        font-weight: bold;
-    }
-}

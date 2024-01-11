@@ -11,7 +11,8 @@
       <link href="https://fonts.googleapis.com/css2?family=Lemon&display=swap" rel="stylesheet">
     </head>
 
-    <body class="container mx-auto p-4">
+    <body>
+    <jsp:include page="fragments/_header.jsp" />
       <h1 class="text-2xl font-bold mb-4">Schedule Interview for ${candidate.firstName}</h1>
 
       <%--@elvariable id="interview" type="com.dillo.hireme.entity.Interview" --%>

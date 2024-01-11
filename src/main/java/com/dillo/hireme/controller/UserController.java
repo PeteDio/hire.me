@@ -69,9 +69,10 @@ public class UserController {
      *
      * @param id The ID of the user to delete
      */
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Long id) {
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
         userService.deleteUser(id);
+        return "redirect:/user/getAll";
     }
     @PostMapping("/update/{userId}/{roleName}")
     public String updateUserRole(@PathVariable Long userId, @PathVariable String roleName){

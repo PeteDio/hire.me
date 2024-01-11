@@ -38,7 +38,9 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="/user/edit/${user.id}" class="text-blue-600 hover:text-blue-900">Edit</a>
-                        <a href="/user/delete/${user.id}" class="text-red-600 hover:text-red-900">delete</a>
+                        <form action="/user/delete/${user.id}" method="post">
+                            <button class="text-red-600 hover:text-red-900" onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
+                        </form>
                     </td>
                 </tr>
             </c:forEach>
